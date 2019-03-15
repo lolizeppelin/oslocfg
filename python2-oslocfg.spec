@@ -1,5 +1,7 @@
-%define proj_name oslocfg
+%include %{_rpmconfigdir}/macros.python
 
+%global debug_package %{nil}
+%define proj_name oslocfg
 %define _release 1
 
 Name:           python2-%{proj_name}
@@ -10,11 +12,12 @@ Group:          Development/Libraries
 License:        MPLv1.1 or GPLv2
 URL:            http://github.com/Lolizeppelin/%{proj_name}
 Source0:        %{proj_name}-%{version}.tar.gz
-BuildArch:      x86_64
+BuildArch:      noarch
 
-BuildRequires:  python-devel >= 2.7
+BuildRequires:  python >= 2.7
+BuildRequires:  python2-setuptools >= 40
 
-Requires:       python >= 2.6.6
+Requires:       python >= 2.7
 Requires:       python < 3.0
 Requires:       python-netaddr >= 0.7.5
 
@@ -39,9 +42,13 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
 
 %files
 %defattr(-,root,root,-)
-%{python2_sitearch}/%{proj_name}/*
-%{python2_sitearch}/%{proj_name}-%{version}-*.egg-info/*
-%dir %{python2_sitearch}/%{proj_name}-%{version}-*.egg-info/
+%{py_sitedir}/%{proj_name}/*
+%dir %{py_sitedir}/%{proj_name}-%{version}-*.egg-info/
+%{py_sitedir}/%{proj_name}-%{version}-*.egg-info/*
+#%{py_sitedir}/%{proj_name}/*
+#%{python2_sitearch}/%{proj_name}/*
+#%{python2_sitearch}/%{proj_name}-%{version}-*.egg-info/*
+#%dir %{python2_sitearch}/%{proj_name}-%{version}-*.egg-info/
 %doc README.rst
 %doc doc/*
 

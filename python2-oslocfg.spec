@@ -2,7 +2,7 @@
 
 %global debug_package %{nil}
 %define proj_name oslocfg
-%define _release 1
+%define _release 2
 
 Name:           python2-%{proj_name}
 Version:        1.0.0
@@ -14,12 +14,12 @@ URL:            http://github.com/Lolizeppelin/%{proj_name}
 Source0:        %{proj_name}-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python >= 2.7
+BuildRequires:  python2 >= 2.7
 BuildRequires:  python2-setuptools >= 40
 
-Requires:       python >= 2.7
-Requires:       python < 3.0
-Requires:       python-netaddr >= 0.7.5
+Requires:       python2 >= 2.7
+Requires:       python2-netaddr >= 0.7.5
+Requires:       python2-six >= 1.9.0
 
 
 %description
